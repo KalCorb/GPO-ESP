@@ -176,13 +176,7 @@ local function RefreshEspFunc()
 	end
 end
 
--- Infinite loop handler placed OUTSIDE the function to avoid stack overflow crashes
-task.spawn(function()
-	while true do
-		RefreshEspFunc()
-		task.wait(0.2)
-	end
-end)
+
 
 
 -- ==========================================
@@ -294,3 +288,14 @@ end
 PlayerCharactersFolder.ChildAdded:Connect(function(child)
 	setupCharacterHealth(child)
 end)
+
+
+-- Infinite loop handler placed OUTSIDE the function to avoid stack overflow crashes
+task.spawn(function()
+	while true do
+		RefreshEspFunc()
+setupCharacterHealth(child)
+		task.wait(0.2)
+	end
+end)
+
